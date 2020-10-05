@@ -1,0 +1,19 @@
+{
+  "name": "webglgraph",
+  "version": "1.0.0",
+  "description": "playground for POC for WebGL rendering of graphing physics",
+  "main": "webglgraph.js",
+  "dependencies": {
+    "twgl.js": "^4.16.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "webglgraph"
+  },
+  "author": "",
+  "license": "GPL-3.0"
+}
