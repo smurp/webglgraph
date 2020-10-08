@@ -120,6 +120,11 @@ In the limit, the biggest win would be if the GPU could simply render raw HDT.
 Normally this paints the geometry.
 
 
+## Notes
+
+To experience most of these experiments, [spin up a webserver](https://gist.github.com/willurd/5720255) serving this repo directory
+
+
 ## Resources
 
 * https://antongerdelan.net/opengl/webgl_starter.html
