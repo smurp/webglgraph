@@ -2,6 +2,13 @@
 
 Problem: do force-directed semantic graph layout on the GPU
 
+
+## The only thing WebGL cares about...
+
+The word traditionally is important. It's only a tradition to do it this way. It is in no way a requirement. WebGL doesn't care how we do it, it only cares that our vertex shaders assign clip space coordinates to gl_Position
+
+https://webglfundamentals.org/webgl/lessons/webgl-drawing-without-data.html
+
 ## Provisions of WebGL
 
 *from https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html*
@@ -23,7 +30,10 @@ Random access arrays of data.  Commonly image data but can be anything.
 
 4. Varyings
 
-Varyings are typically how the vertex shader sends data to the fragment shader.  Depending on what is being rendered, points, lines, or triangles, the values set on a varying by a vertex shader will be interpolated while executing the fragment shader.  ITERATED or INTERPOLATED.
+Varyings are typically how the vertex shader sends data to the fragment shader.
+Depending on what is being rendered, points, lines, or triangles,
+the values set on a varying by a vertex shader will be interpolated
+while executing the fragment shader.  ITERATED or INTERPOLATED?
 
 ## Two Shaders
 

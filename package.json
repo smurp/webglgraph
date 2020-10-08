@@ -14,6 +14,13 @@
     "type": "git",
     "url": "webglgraph"
   },
-  "author": "",
-  "license": "GPL-3.0"
+  "author": "Shawn Murphy <smurp@smurp.com>",
+  "license": "GPL-3.0",
+  "keywords": [
+    "WebGL",
+    "graph",
+    "layout",
+    "visualization",
+    "experiment"
+  ]
 }
