@@ -1,6 +1,6 @@
 'use strict';
-const gl = document.querySelector('#c').getContext('webgl');
 
+/* VERTEX SHADER */
 const vs = `
 attribute float vertexId;
 uniform float numVerts;
@@ -14,15 +14,16 @@ void main() {
   float radius = 0.8;
 
   vec2 pos = vec2(cos(angle), sin(angle)) * radius;
-  
+
   float aspect = resolution.y / resolution.x;
   vec2 scale = vec2(aspect, 1);
-  
+
   gl_Position = vec4(pos * scale, 0, 1);
   gl_PointSize = 5.0;
 }
 `;
 
+/* FRAGMENT SHADER */
 const fs = `
 precision mediump float;
 
@@ -31,6 +32,9 @@ void main() {
 }
 `;
 
+/* JAVASCRIPT */
+const gl = document.querySelector('#c').getContext('webgl');
+
 // setup GLSL program
 const program = webglUtils.createProgramFromSources(gl, [vs, fs]);
 const vertexIdLoc = gl.getAttribLocation(program, 'vertexId');
@@ -38,7 +42,6 @@ const numVertsLoc = gl.getUniformLocation(program, 'numVerts');
 const resolutionLoc = gl.getUniformLocation(program, 'resolution');
 
 // Make a buffer with just a count in it.
-
 const numVerts = 20;
 const vertexIds = new Float32Array(numVerts);
 vertexIds.forEach((v, i) => {
@@ -48,7 +51,6 @@ vertexIds.forEach((v, i) => {
 const idBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, idBuffer);
 gl.bufferData(gl.ARRAY_BUFFER, vertexIds, gl.STATIC_DRAW);
-
 
 // draw
 webglUtils.resizeCanvasToDisplaySize(gl.canvas);
