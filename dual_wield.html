@@ -1,0 +1,55 @@
+<canvas style="width:100vw; height: 100vh; position:absolute; top:0; left:0"></canvas>
+<script>
+  const gl = document.querySelector('canvas').getContext("webgl");
+  const vs = createShader(gl, gl.VERTEX_SHADER, `
+void main() {
+  gl_Position = vec4(0,0,0,1);
+  gl_PointSize = 10.;
+}
+`);
+  const fs = createShader(gl, gl.FRAGMENT_SHADER, `
+precision mediump float;
+uniform vec4 color;
+void main() {
+  gl_FragColor = color;
+}
+`);
+
+  // create 2 programs using the exact same shaders
+  const prg1 = createProgram(gl, vs, fs);
+  const prg2 = createProgram(gl, vs, fs);
+
+  // look up the location of 'color' on prg1
+  const colorLoc = gl.getUniformLocation(prg1, "color");
+  // use that location with prg2  BAD!!
+  gl.useProgram(prg2);
+  console.log("expect INVALID_OPERATION");
+  gl.uniform4fv(colorLoc, [1, 0, 0, 1]);  // SHOULD GET ERROR
+
+  function createProgram(gl, vs, fs) {
+    const p = gl.createProgram();
+    gl.attachShader(p, vs);
+    gl.attachShader(p, fs);
+    gl.linkProgram(p);
+    // TODO: check for errors;
+    return p;
+  }
+
+  function createShader(gl, type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    // TODO: should check for errors
+    return s;
+  }
+</script>
+<pre>
+Yes it IS possible to use two "programs" but care must be taken to interleave binding...
+
+https://stackoverflow.com/a/45543846
+
+https://stackoverflow.com/questions/29355582/
+
+https://sites.google.com/site/progyumming/javascript/shortest-webgl
+
+</pre>
