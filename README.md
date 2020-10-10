@@ -122,6 +122,10 @@ Normally this paints the geometry.
 
 ## Tips
 
+### run a web server to experience this directory
+
+#### use impatient-mode (if you are running emacs)
+
 These pages were developed in Emacs (impatient-mode)[https://github.com/v2e4lisp/impatient-mode]
 because of how fast and fluid the experience is.
 
@@ -130,6 +134,10 @@ because of how fast and fluid the experience is.
     M-x impatient-mode               # in each HTML file you'd like to live edit
     # http://localhost:8080/imp/       to see the files you are impatiently editing
     M-x imp-toggle-htmlize           # if you see raw html instead of rendered
+
+#### other simple servers
+
+[simple web servers](https://gist.github.com/willurd/5720255)
 
 ## Resources
 
