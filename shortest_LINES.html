@@ -1,0 +1,69 @@
+<canvas style="width:100vw; height: 100vh; position:absolute; top:0; left:0; z-index: -1"></canvas>
+<script>
+  'use strict';
+  const gl = document.querySelector('canvas').getContext("webgl");
+
+  // https://stackoverflow.com/questions/45543420/
+  function createProgram(gl, vs, fs) {
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      throw "Could not link shader program";
+    }
+    gl.useProgram(prog);
+    // TODO: check for errors;
+    return prog;
+  }
+  function createShader(gl, type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    // TODO: should check for errors
+    return s;
+  }
+
+  // https://sites.google.com/site/progyumming/javascript/shortest-webgl
+  //   by https://github.com/guciek
+  function attributeSetFloats(gl, prog, attr_name, rsize, arr) {
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(arr),
+                  gl.STATIC_DRAW);
+    var attr = gl.getAttribLocation(prog, attr_name);
+    gl.enableVertexAttribArray(attr);
+    gl.vertexAttribPointer(attr, rsize, gl.FLOAT, false, 0, 0);
+  }
+
+  const vs = createShader(gl, gl.VERTEX_SHADER, `
+attribute vec3 pos;
+void main() {
+  gl_Position = vec4(pos, 2.0);
+}`);
+
+  const fs = createShader(gl, gl.FRAGMENT_SHADER, `
+void main() {
+  gl_FragColor = vec4(1., 0., 0., 1.0);
+}`);
+
+  var points = [
+    -1, 0, 0,
+    0, 1, 0,
+    0, -1, 0,
+    .5, 1.5, 0,
+    .5, 0, 0,
+    1, 1, 0
+  ];
+
+  function draw(gl, prog) {
+    gl.clearColor(0.8, 0.8, 0.8, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    attributeSetFloats(gl, prog, "pos", 3, points); // 3 is the number of items per point
+    gl.drawArrays(gl.LINES, 0, points.length);
+  }
+
+  const prog = createProgram(gl, vs, fs);
+  draw(gl, prog)
+</script>
+<b>shortest_LINES</b><br/>
+<a href="./shortest_POINTS.html">shortest_POINTS</a>
