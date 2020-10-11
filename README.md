@@ -14,10 +14,10 @@ https://webglfundamentals.org/webgl/lessons/webgl-drawing-without-data.html
 ### https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Data
 
 | type       | JS | vertex | fragment | limits |
-| -----------|-----|-------||---------|------------|
-| attributes | RW | R W?   | -- | |
-| buffers    | RW | R W?   | -- | |
-| varyings   | -- | W      | R  | https://stackoverflow.com/questions/26682631/webgl-shaders-maximum-number-of-varying-variables |
+| -----------|-----|-------|----------|--------|
+| attributes | RW | R W?   | x | |
+| buffers    | RW | R W?   | x | |
+| varyings   | x | W      | R  | https://stackoverflow.com/questions/26682631/webgl-shaders-maximum-number-of-varying-variables |
 | uniforms   | W  | R      | R  | |
 | textures   |    |        |    | |
 
