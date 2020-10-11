@@ -125,6 +125,7 @@ Normally this paints the geometry.
 ### See these examples rendered
 
 * https://smurp.github.io/webglgraph/dataless.html
+* https://smurp.github.io/webglgraph/shortest_POINTS.html
 * https://smurp.github.io/webglgraph/shortest_TRIANGLE_STRIP.html
 * https://smurp.github.io/webglgraph/shortest_TRIANGLES.html
 * https://smurp.github.io/webglgraph/twgl.html

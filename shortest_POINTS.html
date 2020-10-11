@@ -13,12 +13,14 @@
       throw "Could not link shader program";
     }
     gl.useProgram(prog);
+    // TODO: check for errors;
     return prog;
   }
   function createShader(gl, type, src) {
     const s = gl.createShader(type);
     gl.shaderSource(s, src);
     gl.compileShader(s);
+    // TODO: should check for errors
     return s;
   }
 
@@ -41,25 +43,27 @@ void main() {
 
   const fs = createShader(gl, gl.FRAGMENT_SHADER, `
 void main() {
-  gl_FragColor = vec4(.4, 0.5, 1.0, 1.0);
+  gl_FragColor = vec4(1., 0., 0., 1.0);
 }`);
 
   var points = [
     -1, 0, 0,
     0, 1, 0,
     0, -1, 0,
-    1, 1.5, 0
+    .5, 1.5, 0,
+    .5, 0, 0,
+    1, 1, 0
   ];
 
   function draw(gl, prog) {
     gl.clearColor(0.8, 0.8, 0.8, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
-    attributeSetFloats(gl, prog, "pos", 3, points);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, points.length);
+    attributeSetFloats(gl, prog, "pos", 3, points); // 3 is the number of items per point
+    gl.drawArrays(gl.POINTS, 0, points.length);
   }
 
   const prog = createProgram(gl, vs, fs);
   draw(gl, prog)
 </script>
-<b>shortest_TRIANGLE_STRIP</b><br/>
-
+<b>shortest_POINTS</b><br/>
+<a href="./shortest_TRIANGLES.html">shortest_TRIANGLES</a>
