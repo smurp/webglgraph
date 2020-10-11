@@ -124,12 +124,10 @@ Normally this paints the geometry.
 
 ### See these examples rendered
 
-* https://smurp.github.io/dataless.html
-* https://smurp.github.io/shortest_TRIANGLE_STRIP.html
-* https://smurp.github.io/shortest_TRIANGLES.html
-* https://smurp.github.io/twgl.html
-
-
+* https://smurp.github.io/webglgraph/dataless.html
+* https://smurp.github.io/webglgraph/shortest_TRIANGLE_STRIP.html
+* https://smurp.github.io/webglgraph/shortest_TRIANGLES.html
+* https://smurp.github.io/webglgraph/twgl.html
 
 ### run a web server to experience this directory
 
