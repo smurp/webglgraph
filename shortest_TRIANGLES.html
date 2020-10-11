@@ -1,32 +1,58 @@
 <canvas style="width:100vw; height: 100vh; position:absolute; top:0; left:0"></canvas>
 <script>
+  'use strict';
   const gl = document.querySelector('canvas').getContext("webgl");
   const vs = createShader(gl, gl.VERTEX_SHADER, `
-attribute vec3 coordinates;
-void main(void) {
-  gl_Position = vec4(coordinates, 1.0);
-}
-`);
+attribute vec3 pos;
+void main() {
+  gl_Position = vec4(pos, 2.0);
+}`);
+
   const fs = createShader(gl, gl.FRAGMENT_SHADER, `
 void main() {
-  gl_FragColor = vec4(1.0, 0.0, 0.0, .1);
-}
-`);
+  gl_FragColor = vec4(0.5, 0.5, 1.0, 1.0);
+}`);
 
-  const prg1 = createProgram(gl, vs, fs);
+  var points = [
+    -1, 0, 0,
+    0, 1, 0,
+    0, -1, 0,
+    .5, 1.5, 0,
+    .5, 0, 0,
+    1, 1, 0
+  ];
 
-  gl.useProgram(prg1);
+  const prog = createProgram(gl, vs, fs);
+  draw(gl, prog)
 
-  gl.uniform4fv(colorLoc, [1, 0, 0, 1]);  // SHOULD GET ERROR
+  function draw(gl, prog) {
+    gl.clearColor(0.8, 0.8, 0.8, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    attributeSetFloats(gl, prog, "pos", 3, points);
+    gl.drawArrays(gl.TRIANGLES, 0, points.length);
+  }
+
+  function attributeSetFloats(gl, prog, attr_name, rsize, arr) {
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(arr),
+                  gl.STATIC_DRAW);
+    var attr = gl.getAttribLocation(prog, attr_name);
+    gl.enableVertexAttribArray(attr);
+    gl.vertexAttribPointer(attr, rsize, gl.FLOAT, false, 0, 0);
+  }
 
   // https://stackoverflow.com/questions/45543420/
   function createProgram(gl, vs, fs) {
-    const p = gl.createProgram();
-    gl.attachShader(p, vs);
-    gl.attachShader(p, fs);
-    gl.linkProgram(p);
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      throw "Could not link shader program";
+    }
+    gl.useProgram(prog);
     // TODO: check for errors;
-    return p;
+    return prog;
   }
   function createShader(gl, type, src) {
     const s = gl.createShader(type);
