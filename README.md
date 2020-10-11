@@ -122,6 +122,15 @@ Normally this paints the geometry.
 
 ## Tips
 
+### See these examples rendered
+
+* https://smurp.github.io/dataless.html
+* https://smurp.github.io/shortest_TRIANGLE_STRIP.html
+* https://smurp.github.io/shortest_TRIANGLES.html
+* https://smurp.github.io/twgl.html
+
+
+
 ### run a web server to experience this directory
 
 #### use impatient-mode (if you are running emacs)
