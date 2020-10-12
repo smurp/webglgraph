@@ -15,11 +15,11 @@ https://webglfundamentals.org/webgl/lessons/webgl-drawing-without-data.html
 
 | type       | JS | vertex | fragment | limits |
 | -----------|-----|-------|----------|--------|
-| attributes | RW | R W?   | x | |
-| buffers    | RW | R W?   | x | |
-| varyings   | x | W      | R  | https://stackoverflow.com/questions/26682631/webgl-shaders-maximum-number-of-varying-variables |
-| uniforms   | W  | R      | R  | |
-| textures   |    |        |    | |
+| attributes | RW | R W?   | x        | |
+| buffers    | RW | R W?   | x        | |
+| varyings   | x | W       | R        | [MDN](https://stackoverflow.com/questions/26682631/webgl-shaders-maximum-number-of-varying-variables) |
+| uniforms   | W  | R      | R        | |
+| textures   |    |        |          | |
 
 
 ### from https://webglfundamentals.org/webgl/lessons/webgl-fundamentals.html
