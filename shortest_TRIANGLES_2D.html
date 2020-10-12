@@ -34,9 +34,9 @@
   }
 
   const vs = createShader(gl, gl.VERTEX_SHADER, `
-attribute vec3 pos;
+attribute vec2 pos;
 void main() {
-  gl_Position = vec4(pos, 2.0);
+  gl_Position = vec4(pos, 0.0, 2.0);
 }`);
 
   const fs = createShader(gl, gl.FRAGMENT_SHADER, `
@@ -45,24 +45,19 @@ void main() {
 }`);
 
   var points = [
-    -1, 0, 0,
-    0, 1, 0,
-    0, -1, 0,
-    .5, 1.5, 0,
-    .5, 0, 0,
-    1, 1, 0
+    -1, 0,
+    0, 1,
+    0, -1,
+    0.5, 1.5 ,
+    0.5, 0,
+    1, 1,
   ];
-
-  function draw(gl, prog) {
-    gl.clearColor(0.8, 0.8, 0.8, 1);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    attributeSetFloats(gl, prog, "pos", 3, points);
-    gl.drawArrays(gl.TRIANGLES, 0, points.length);
-  }
-
   const prog = createProgram(gl, vs, fs);
-  draw(gl, prog)
+  gl.clearColor(0.8, 0.8, 0.8, 1);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  attributeSetFloats(gl, prog, "pos", 2, points);
+  gl.drawArrays(gl.TRIANGLES, 0, points.length);
 </script>
 <b>shortest_TRIANGLES</b><br/>
 <a href="./shortest_TRIANGLE_STRIP.html">shortest_TRIANGLE_STRIP</a><br>
-<a href="./shortest_TRIANGLES_2D.html">shortest_TRIANGLES_2D</a>
+<a href="./shortest_TRIANGLES.html">shortest_TRIANGLES</a>

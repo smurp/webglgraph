@@ -141,6 +141,7 @@ Normally this paints the geometry.
 * https://smurp.github.io/webglgraph/shortest_POINTS.html
 * https://smurp.github.io/webglgraph/shortest_TRIANGLE_STRIP.html
 * https://smurp.github.io/webglgraph/shortest_TRIANGLES.html
+* https://smurp.github.io/webglgraph/shortest_TRIANGLES_2D.html
 * https://smurp.github.io/webglgraph/twgl.html
 
 ### run a web server to experience this directory
